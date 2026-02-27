@@ -5,6 +5,8 @@
 import { LitElement, html, css } from "lit";
 import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
+import "./lib/slide-arrow.js";
+import "./lib/slide-indicator.js";
 
 /**
  * `play-list-project`
@@ -59,6 +61,10 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
       h3 span {
         font-size: var(--play-list-project-label-font-size, var(--ddd-font-size-s));
       }
+      .slide {
+        width: 240px;
+        height: 120px;
+      }
     `];
   }
 
@@ -71,9 +77,7 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
 </div>`;
   }
 
-  /**
-   * haxProperties integration via file reference
-   */
+  /* haxProperties integration via file reference */
   static get haxProperties() {
     return new URL(`./lib/${this.tag}.haxProperties.json`, import.meta.url)
       .href;
