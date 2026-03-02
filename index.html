@@ -11,81 +11,27 @@
     :root, html, body {
       margin: var(--ddd-spacing-0);
       padding: var(--ddd-spacing-0);
-    }
-    #demo {
-      margin: var(--ddd-spacing-2);
+      background-color: var(--ddd-theme-default-white);
     }
     play-list-project {
       margin: var(--ddd-spacing-2);
       border: var(--ddd-border-md);
-      border-radius: var(--ddd-radius-lg);
-    }
-    play-list-project:hover {
       box-shadow: var(--ddd-boxShadow-sm);
-    }
-    #example {
-      --play-list-project-font-size: var(--ddd-font-size-l);
-      background-color: var(--ddd-accent-2);
-      color: var(--ddd-primary-17);
     }
   </style>
   <title>play-list-project</title>
 </head>
 
 <body>
-  <div id="demo">
-    <play-list-project index="3">
-    <play-list-slide top-heading="Top line heading" second-heading="Slide 1, sub-heading">
-      <p>A whole bunch of content in here</p>
+  <play-list-project index="3">
+    <play-list-slide top-heading="custom heading" second-heading="Slide 1, sub-heading">
+      <p>A whole bunch of content in hereA whole bunch of content in hereA whole bunch of content in hereA whole bunch of content in hereA whole bunch of content in hereA whole bunch of content in hereA whole bunch of content in hereA whole bunch of content in hereA whole bunch of content in hereA whole bunch of content in hereA whole bunch of content in hereA whole bunch of content in hereA whole bunch of content in hereA whole bunch of content in here</p>
+      <slide-indicator slot="indicator"></slide-indicator>
     </play-list-slide>
-    <play-list-slide top-heading="Top line heading" second-heading="Slide 1, sub-heading">
-        <p>A whole bunch of content in here</p>
-      </play-list-slide>
-    <play-list-slide top-heading="Top line heading" second-heading="Slide 1, sub-heading">
-        <p>A whole bunch of content in here</p>
-      </play-list-slide>
-    <play-list-slide top-heading="Top line heading" second-heading="Slide 1, sub-heading">
-        <p>A whole bunch of content in here</p>
-      </play-list-slide>
-    </play-list-project>
-  </div>
+  </play-list-project>
   <script type="module" src="./play-list-project.js"></script>
-
-  <!-- Take HAX, the Web and you further down the rabbit hole -->
-  <style>
-    #follow-the-white-rabbit {
-      margin: var(--ddd-spacing-4) auto var(--ddd-spacing-16)  var(--ddd-spacing-4);
-      background-color: var(--ddd-accent-4);
-      color: var(--ddd-theme-default-coalyGray);
-    }
-    #follow-the-white-rabbit[open] summary {
-      background-color: var(--ddd-accent-4) !important;
-      color: var(--ddd-theme-default-coalyGray);
-    }
-    #follow-the-white-rabbit[open] .content {
-      padding: var(--ddd-spacing-0) var(--ddd-spacing-4);
-    }
-    #follow-the-white-rabbit ul,
-    #follow-the-white-rabbit li {
-      padding: var(--ddd-spacing-0);
-      margin: var(--ddd-spacing-0);
-    }
-    #follow-the-white-rabbit li {
-      font-size: var(--ddd-font-size-xs);
-      list-style: none;
-    }
-    #follow-the-white-rabbit li strong,
-    #follow-the-white-rabbit li a {
-      padding: var(--ddd-spacing-2) var(--ddd-spacing-4);
-      color: var(--ddd-theme-default-coalyGray);
-      display: block;
-      font-weight: var(--ddd-font-weight-bold);
-    }
-    #follow-the-white-rabbit li:focus-within a,
-    #follow-the-white-rabbit li:hover a {
-      background-color: var(--ddd-theme-default-coalyGray);
-      color: var(--ddd-theme-default-globalNeon);
-    }
-  </style>
+  <script type="module" src="./play-list-slide.js"></script>
+  <script type="module" src="./play-list-arrow.js"></script>
+  <script type="module" src="./play-list-indicator.js"></script>
 </body>
 </html>
