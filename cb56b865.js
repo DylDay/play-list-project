@@ -1,1 +1,0 @@
-import{i as n,b as s}from"./1d13303c.js";var r=Object.freeze,c=Object.defineProperty,d=(e,a)=>r(c(e,"raw",{value:r(a||e.slice())})),t;class i extends n{static get tag(){return"slide-indicator"}render(){return s(t||(t=d(["\n            . . . .\n        "])))}}globalThis.customElements.define(i.tag,i);
