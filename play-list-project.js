@@ -41,8 +41,6 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
         color: var(--ddd-theme-default-beaverBlue);
         background-color: var(--ddd-theme-default-slateMaxLight);
         font-family: var(--ddd-font-navigation);
-        width: 1080px;
-        height: 510px;
         border-radius: var(--ddd-radius-sm);
         position: relative;
       }
@@ -58,6 +56,13 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
         height: 120px;
       }
     `];
+  }
+
+  // change function to a better name
+  // needs to be kept in sync with information update when either button or dot is clicked
+  handleEvent(e) {
+    this.currentIndex = e.detail.index;
+    this.updateSlides();
   }
 
   // Lit render the HTML
