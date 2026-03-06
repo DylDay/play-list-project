@@ -43,17 +43,24 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
         font-family: var(--ddd-font-navigation);
         border-radius: var(--ddd-radius-sm);
         position: relative;
+        width: 960px;
+        height: 480px;
       }
       .wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 100%;
         margin: var(--ddd-spacing-2);
-        padding: var(--ddd-spacing-4);
+        padding-left: var(--ddd-spacing-4);
+        padding-right: var(--ddd-spacing-4);
+      }
+      .wrapper > slot {
+        flex: 1 1 auto;
+        display: block;
       }
       h3 span {
         font-size: var(--ddd-font-size-s);
-      }
-      .slide {
-        width: 240px;
-        height: 120px;
       }
     `];
   }
@@ -70,10 +77,11 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
     return html`
       <div class="wrapper">
         <slide-arrow direction="previous"></slide-arrow>
-        <slide-arrow direction="next"></slide-arrow>
         <slot></slot>
+        <slide-arrow direction="next"></slide-arrow>
       </div>`;
   }
 }
 
+// todo: add proper padding, add slide indicators, add slide arrows
 globalThis.customElements.define(PlayListProject.tag, PlayListProject);
