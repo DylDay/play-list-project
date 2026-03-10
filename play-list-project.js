@@ -23,12 +23,23 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
 
   constructor() {
     super();
+    this.title = "";
+    this.currentIndex = 0;
+    this.totalSlides = 0;
+    this.slides = [];
+    this.t = {
+      title: "Title",
+    };
   }
 
   // Lit reactive properties
   static get properties() {
     return {
-      ...super.properties
+      ...super.properties,
+      title: { type: String },
+      currentIndex: { type: Number },
+      totalSlides: { type: Number },
+      slides: { type: Array},
     };
   }
 
@@ -62,26 +73,84 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
       h3 span {
         font-size: var(--ddd-font-size-s);
       }
+
+      slide-indicator {
+        position: absolute;
+        bottom: var(--ddd-spacing-8);
+        left: var(--ddd-spacing-8);
+      }
+
+      slide-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 100;
+      }
+
+      slide-arrow[direction="previous"] {
+        left: -32px;
+      }
+
+      slide-arrow[direction="next"] {
+        right: -32px;
+      }
     `];
   }
 
-  // change function to a better name
-  // needs to be kept in sync with information update when either button or dot is clicked
-  handleEvent(e) {
-    this.currentIndex = e.detail.index;
+  nextSlide() {
+    if (this.currentIndex < this.totalSlides - 1) {
+      this.currentIndex++;
+    } else {
+      this.currentIndex = 0;
+    }
     this.updateSlides();
+  }
+
+  previousSlide() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+    } else {
+      this.currentIndex = this.totalSlides - 1;
+    }
+    this.updateSlides();
+  }
+
+  firstUpdated() {
+    const slides = Array.from(this.querySelectorAll('play-list-slide'));
+    this.totalSlides = slides.length;
+    this.slides = slides;
+    this.updateSlides();
+  }
+
+  updateSlides() {
+    this.slides.forEach((slide, i) => {
+      slide.active = (i === this.currentIndex);
+    });
+    const indexChange = new CustomEvent("play-list-index-changed", {
+      composed: true,
+      bubbles: true,
+      detail: {
+        index: this.currentIndex
+      },
+    });
+    this.dispatchEvent(indexChange);
   }
 
   // Lit render the HTML
   render() {
     return html`
       <div class="wrapper">
-        <slide-arrow direction="previous"></slide-arrow>
+        <slide-arrow direction="previous" @click="${this.previousSlide}"></slide-arrow>
         <slot></slot>
-        <slide-arrow direction="next"></slide-arrow>
+        <slide-arrow direction="next" @click="${this.nextSlide}"></slide-arrow>
+        <slide-indicator .totalSlides="${this.totalSlides}" .currentIndex="${this.currentIndex}"
+          @indicator-change="${(e) => {
+            this.currentIndex = e.detail.index;
+            this.updateSlides();
+          }}">
+        </slide-indicator>
       </div>`;
   }
 }
 
-// todo: add proper padding, add slide indicators, add slide arrows
 globalThis.customElements.define(PlayListProject.tag, PlayListProject);
