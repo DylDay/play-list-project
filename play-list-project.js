@@ -73,26 +73,27 @@ export class PlayListProject extends DDDSuper(I18NMixin(LitElement)) {
       h3 span {
         font-size: var(--ddd-font-size-s);
       }
-
       slide-indicator {
         position: absolute;
         bottom: var(--ddd-spacing-8);
         left: var(--ddd-spacing-8);
       }
-
       slide-arrow {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        z-index: 100;
       }
-
       slide-arrow[direction="previous"] {
         left: -32px;
       }
-
       slide-arrow[direction="next"] {
         right: -32px;
+      }
+      @media (prefers-color-scheme: dark) {
+        :host {
+          background-color: var(--ddd-theme-default-beaverBlue);
+          color: var(---ddd-theme-default-slateMaxLight);
+        }
       }
     `];
   }
